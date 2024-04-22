@@ -2,7 +2,7 @@
 workspace "kubykEngine"
    architecture "x64"
    configurations { "Debug", "Release", "Dist" }
-   startproject "App"
+   startproject "Game"
 
    -- Workspace-wide build options for MSVC
    filter "system:windows"
@@ -11,7 +11,7 @@ workspace "kubykEngine"
 OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
 
 group "Core"
-	include "Core/Build-Core.lua"
+	include "Core/BuildProject.lua"
 group ""
 
-include "App/Build-App.lua"
+include "Engine/BuildEngine.lua"
