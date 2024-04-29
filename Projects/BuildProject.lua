@@ -1,4 +1,4 @@
-project "kubykEngine"
+project "kubykProject"
    kind "ConsoleApp"
    language "C++"
    cppdialect "C++20"
