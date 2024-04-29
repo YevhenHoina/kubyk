@@ -1,8 +1,8 @@
 -- premake5.lua
-workspace "kubykEngine"
+workspace "knu_proj"
    architecture "x64"
    configurations { "Debug", "Release", "Dist" }
-   startproject "Game"
+   startproject "kubykEngine"
 
    -- Workspace-wide build options for MSVC
    filter "system:windows"
@@ -10,8 +10,6 @@ workspace "kubykEngine"
 
 OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
 
-group "Core"
-	include "Core/BuildProject.lua"
-group ""
 
 include "Engine/BuildEngine.lua"
+include "Projects/BuildProject.lua"

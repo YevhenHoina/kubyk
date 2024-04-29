@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Dist|x64">
+      <Configuration>Dist</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A1E64A9A-0D9C-C38F-9690-BD660245BA93}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>kubykEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\Build\windows-x86_64\Debug\kubykEngine\</OutDir>
+    <IntDir>..\Build\Intermediates\windows-x86_64\Debug\kubykEngine\</IntDir>
+    <TargetName>kubykEngine</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\Build\windows-x86_64\Release\kubykEngine\</OutDir>
+    <IntDir>..\Build\Intermediates\windows-x86_64\Release\kubykEngine\</IntDir>
+    <TargetName>kubykEngine</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\Build\windows-x86_64\Dist\kubykEngine\</OutDir>
+    <IntDir>..\Build\Intermediates\windows-x86_64\Dist\kubykEngine\</IntDir>
+    <TargetName>kubykEngine</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WINDOWS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/EHsc /Zc:preprocessor /Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>imgui.lib;opengl32.lib;gl.lib;glm.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Lib\link;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WINDOWS;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalOptions>/EHsc /Zc:preprocessor /Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>imgui.lib;opengl32.lib;gl.lib;glm.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Lib\link;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WINDOWS;DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalOptions>/EHsc /Zc:preprocessor /Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>imgui.lib;opengl32.lib;gl.lib;glm.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Lib\link;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\include\assimp\BaseImporter.h" />
+    <ClInclude Include="Source\include\assimp\Bitmap.h" />
+    <ClInclude Include="Source\include\assimp\BlobIOSystem.h" />
+    <ClInclude Include="Source\include\assimp\ByteSwapper.h" />
+    <ClInclude Include="Source\include\assimp\ColladaMetaData.h" />
+    <ClInclude Include="Source\include\assimp\Compiler\poppack1.h" />
+    <ClInclude Include="Source\include\assimp\Compiler\pstdint.h" />
+    <ClInclude Include="Source\include\assimp\Compiler\pushpack1.h" />
+    <ClInclude Include="Source\include\assimp\CreateAnimMesh.h" />
+    <ClInclude Include="Source\include\assimp\DefaultIOStream.h" />
+    <ClInclude Include="Source\include\assimp\DefaultIOSystem.h" />
+    <ClInclude Include="Source\include\assimp\Defines.h" />
+    <ClInclude Include="Source\include\assimp\Exceptional.h" />
+    <ClInclude Include="Source\include\assimp\GenericProperty.h" />
+    <ClInclude Include="Source\include\assimp\Hash.h" />
+    <ClInclude Include="Source\include\assimp\IOStreamBuffer.h" />
+    <ClInclude Include="Source\include\assimp\LineSplitter.h" />
+    <ClInclude Include="Source\include\assimp\LogAux.h" />
+    <ClInclude Include="Source\include\assimp\MathFunctions.h" />
+    <ClInclude Include="Source\include\assimp\MemoryIOWrapper.h" />
+    <ClInclude Include="Source\include\assimp\ParsingUtils.h" />
+    <ClInclude Include="Source\include\assimp\Profiler.h" />
+    <ClInclude Include="Source\include\assimp\RemoveComments.h" />
+    <ClInclude Include="Source\include\assimp\SGSpatialSort.h" />
+    <ClInclude Include="Source\include\assimp\SceneCombiner.h" />
+    <ClInclude Include="Source\include\assimp\SkeletonMeshBuilder.h" />
+    <ClInclude Include="Source\include\assimp\SmallVector.h" />
+    <ClInclude Include="Source\include\assimp\SmoothingGroups.h" />
+    <ClInclude Include="Source\include\assimp\SpatialSort.h" />
+    <ClInclude Include="Source\include\assimp\StandardShapes.h" />
+    <ClInclude Include="Source\include\assimp\StreamReader.h" />
+    <ClInclude Include="Source\include\assimp\StreamWriter.h" />
+    <ClInclude Include="Source\include\assimp\StringComparison.h" />
+    <ClInclude Include="Source\include\assimp\StringUtils.h" />
+    <ClInclude Include="Source\include\assimp\Subdivision.h" />
+    <ClInclude Include="Source\include\assimp\TinyFormatter.h" />
+    <ClInclude Include="Source\include\assimp\Vertex.h" />
+    <ClInclude Include="Source\include\assimp\XMLTools.h" />
+    <ClInclude Include="Source\include\assimp\XmlParser.h" />
+    <ClInclude Include="Source\include\assimp\ZipArchiveIOSystem.h" />
+    <ClInclude Include="Source\include\assimp\aabb.h" />
+    <ClInclude Include="Source\include\assimp\ai_assert.h" />
+    <ClInclude Include="Source\include\assimp\anim.h" />
+    <ClInclude Include="Source\include\assimp\camera.h" />
+    <ClInclude Include="Source\include\assimp\cexport.h" />
+    <ClInclude Include="Source\include\assimp\cfileio.h" />
+    <ClInclude Include="Source\include\assimp\cimport.h" />
+    <ClInclude Include="Source\include\assimp\color4.h" />
+    <ClInclude Include="Source\include\assimp\commonMetaData.h" />
+    <ClInclude Include="Source\include\assimp\config.h" />
+    <ClInclude Include="Source\include\assimp\defs.h" />
+    <ClInclude Include="Source\include\assimp\fast_atof.h" />
+    <ClInclude Include="Source\include\assimp\importerdesc.h" />
+    <ClInclude Include="Source\include\assimp\light.h" />
+    <ClInclude Include="Source\include\assimp\material.h" />
+    <ClInclude Include="Source\include\assimp\matrix3x3.h" />
+    <ClInclude Include="Source\include\assimp\matrix4x4.h" />
+    <ClInclude Include="Source\include\assimp\mesh.h" />
+    <ClInclude Include="Source\include\assimp\metadata.h" />
+    <ClInclude Include="Source\include\assimp\pbrmaterial.h" />
+    <ClInclude Include="Source\include\assimp\port\AndroidJNI\AndroidJNIIOSystem.h" />
+    <ClInclude Include="Source\include\assimp\port\AndroidJNI\BundledAssetIOSystem.h" />
+    <ClInclude Include="Source\include\assimp\postprocess.h" />
+    <ClInclude Include="Source\include\assimp\qnan.h" />
+    <ClInclude Include="Source\include\assimp\quaternion.h" />
+    <ClInclude Include="Source\include\assimp\scene.h" />
+    <ClInclude Include="Source\include\assimp\texture.h" />
+    <ClInclude Include="Source\include\assimp\types.h" />
+    <ClInclude Include="Source\include\assimp\vector2.h" />
+    <ClInclude Include="Source\include\assimp\vector3.h" />
+    <ClInclude Include="Source\include\assimp\version.h" />
+    <ClInclude Include="Source\include\gl\eglew.h" />
+    <ClInclude Include="Source\include\gl\glew.h" />
+    <ClInclude Include="Source\include\gl\glxew.h" />
+    <ClInclude Include="Source\include\gl\wglew.h" />
+    <ClInclude Include="Source\include\glm\simd\common.h" />
+    <ClInclude Include="Source\include\glm\simd\exponential.h" />
+    <ClInclude Include="Source\include\glm\simd\geometric.h" />
+    <ClInclude Include="Source\include\glm\simd\integer.h" />
+    <ClInclude Include="Source\include\glm\simd\matrix.h" />
+    <ClInclude Include="Source\include\glm\simd\neon.h" />
+    <ClInclude Include="Source\include\glm\simd\packing.h" />
+    <ClInclude Include="Source\include\glm\simd\platform.h" />
+    <ClInclude Include="Source\include\glm\simd\trigonometric.h" />
+    <ClInclude Include="Source\include\glm\simd\vector_relational.h" />
+    <ClInclude Include="Source\include\glsw\glfw3.h" />
+    <ClInclude Include="Source\include\glsw\glfw3native.h" />
+    <ClInclude Include="Source\include\imgui\imconfig.h" />
+    <ClInclude Include="Source\include\imgui\imgui.h" />
+    <ClInclude Include="Source\include\imgui\imgui_internal.h" />
+    <ClInclude Include="Source\include\imgui\imstb_rectpack.h" />
+    <ClInclude Include="Source\include\imgui\imstb_textedit.h" />
+    <ClInclude Include="Source\include\imgui\imstb_truetype.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\include\glm\detail\glm.cpp" />
+    <ClCompile Include="Source\include\imgui\imgui.cpp" />
+    <ClCompile Include="Source\include\imgui\imgui_demo.cpp" />
+    <ClCompile Include="Source\include\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Source\include\imgui\imgui_tables.cpp" />
+    <ClCompile Include="Source\include\imgui\imgui_widgets.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

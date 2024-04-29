@@ -1,18 +1,16 @@
-project "Engine"
+project "kubykEngine"
    kind "ConsoleApp"
    language "C++"
    cppdialect "C++20"
    targetdir "Binaries/%{cfg.buildcfg}"
    staticruntime "off"
+   
+   
+   includedirs { "Source" }
+   libdirs { "Lib/link" }
+   files { "Source/**.h", "Source/**.cpp" }
 
-   files { "Source/**.h", "Source/**.cpp", "Source/**" }
-
-   includedirs
-   {
-      "Source",
-      "Source/**",
-      "Content"
-   }
+   
       
    defines
    {
@@ -20,9 +18,10 @@ project "Engine"
    }
 
 
-   targetdir ("../Build/" .. OutputDir .. "/%{prj.name}")
-   objdir ("../Build/Intermediates/" .. OutputDir .. "/%{prj.name}")
+   targetdir ("..Build/" .. OutputDir .. "/%{prj.name}")
+   objdir ("..Build/Intermediates/" .. OutputDir .. "/%{prj.name}")
 
+   links { "imgui", "opengl32", "gl", "glm", "assimp" }
    
    filter "system:windows"
        systemversion "latest"
