@@ -5,10 +5,18 @@ project "kubykEngine"
    targetdir "Binaries/%{cfg.buildcfg}"
    staticruntime "off"
    
-   
-   includedirs { "Source" }
-   libdirs { "Lib/link" }
    files { "Source/**.h", "Source/**.cpp" }
+   includedirs { 
+    "$(SolutionDir)Engine/Source/inсlude/assimp",
+    "$(SolutionDir)Engine/Source/inсlude/GL",
+    "$(SolutionDir)Engine/Source/inсlude/GLM",
+    "$(SolutionDir)Engine/Source/inсlude/GLSW",
+    "$(SolutionDir)Engine/Source/inсlude/ImGui",
+    "$(SolutionDir)Engine/Source",
+
+   }
+   libdirs { "$(SolutionDir)Engine/Binaries" }
+   
 
    
       
@@ -18,10 +26,10 @@ project "kubykEngine"
    }
 
 
-   targetdir ("..Build/" .. OutputDir .. "/%{prj.name}")
-   objdir ("..Build/Intermediates/" .. OutputDir .. "/%{prj.name}")
+   targetdir ("$(SolutionDir)Engine/Build/" .. OutputDir .. "/%{prj.name}")
+   objdir ("$(SolutionDir)Engine/Build/Intermediates/" .. OutputDir .. "/%{prj.name}")
 
-   links { "imgui", "opengl32", "gl", "glm", "assimp" }
+   links { "glfw3.lib", "opengl32.lib", "user32.lib", "gdi32.lib", "shell32.lib" }
    
    filter "system:windows"
        systemversion "latest"
