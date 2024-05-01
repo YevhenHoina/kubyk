@@ -359,10 +359,10 @@ ASALocalRun/
 *.binlog
 premake5.exe
 # Files that generates automaticly
-.vcxprog
-.vcxprog.filter
-.vcxprog.user
-.sln
+*.vcxprog
+*.vcxprog.filter
+*.vcxprog.user
+*.sln
 
 #Builds
 Engine/Build/
