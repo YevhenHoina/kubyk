@@ -388,5 +388,7 @@
     <ClCompile Include="Source\interface\create_project_window.cpp" />
     <ClCompile Include="Source\interface\scene.cpp" />
     <ClCompile Include="Source\gameWindow\game.cpp" />
+    <ClCompile Include="Source\core\asset_importer.cpp" />
+    <ClCompile Include="Source\core\model_loading.cpp" />
   </ItemGroup>
 </Project>
