@@ -11,6 +11,8 @@ project "kubykEngine"
     "$(SolutionDir)Engine/Source/inсlude/GL",
     "$(SolutionDir)Engine/Source/inсlude/GLM",
     "$(SolutionDir)Engine/Source/inсlude/GLSW",
+    "$(SolutionDir)Engine/Source/inсlude/glad",
+    "$(SolutionDir)Engine/Source/inсlude/KHR",
     "$(SolutionDir)Engine/Source/inсlude/ImGui",
     "$(SolutionDir)Engine/Source",
 
@@ -29,7 +31,14 @@ project "kubykEngine"
    targetdir ("$(SolutionDir)Engine/Build/" .. OutputDir .. "/%{prj.name}")
    objdir ("$(SolutionDir)Engine/Build/Intermediates/" .. OutputDir .. "/%{prj.name}")
 
-   links { "glfw3.lib", "opengl32.lib", "user32.lib", "gdi32.lib", "shell32.lib" }
+   links {
+   "glfw3.lib",
+   "opengl32.lib",
+   "user32.lib",
+   "gdi32.lib",
+   "shell32.lib",
+   "assimp-vc143-mt.lib"
+   }
    
    filter "system:windows"
        systemversion "latest"
