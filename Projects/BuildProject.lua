@@ -5,19 +5,24 @@ project "kubykProject"
    targetdir "Binaries/%{cfg.buildcfg}"
    staticruntime "off"
    
-   files { "Source/**.h", "Source/**.cpp" }
+   files { "Source/**.h",
+   "Source/**.cpp",
+   "Source/**.c",
+   "Source/**.hpp",
+   "Source/**.inl"}
    includedirs { 
-    --All the Engine
     "$(SolutionDir)Engine/Source/inсlude/assimp",
     "$(SolutionDir)Engine/Source/inсlude/GL",
     "$(SolutionDir)Engine/Source/inсlude/GLM",
     "$(SolutionDir)Engine/Source/inсlude/GLSW",
+    "$(SolutionDir)Engine/Source/inсlude/glad",
+    "$(SolutionDir)Engine/Source/inсlude/KHR",
     "$(SolutionDir)Engine/Source/inсlude/ImGui",
     "$(SolutionDir)Engine/Source",
     
     "$(SolutionDir)Project/Source"
    }
-   libdirs { "$(SolutionDir)Engine/Binaries" }
+   libdirs { "$(SolutionDir)Engine/Libraries" }
    
 
    
@@ -41,15 +46,18 @@ project "kubykProject"
        defines { "DEBUG" }
        runtime "Debug"
        symbols "On"
+       debugenvs { "PATH=%PATH%;$(SolutionDir)\\Engine\\Binaries" }
 
    filter "configurations:Release"
        defines { "RELEASE" }
        runtime "Release"
        optimize "On"
        symbols "On"
+       debugenvs { "PATH=%PATH%;$(SolutionDir)\\Engine\\Binaries" }
 
    filter "configurations:Dist"
        defines { "DIST" }
        runtime "Release"
        optimize "On"
        symbols "Off"
+       debugenvs { "PATH=%PATH%;$(SolutionDir)\\Engine\\Binaries" }
