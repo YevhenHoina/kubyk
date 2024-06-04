@@ -1,12 +1,13 @@
-#include "core/core.h"
+
 #include "gameWindow.h"
 #include "Shader.h"
 #include "core/elements/mesh/kubyk_voxel.h"
 
 GLuint VBO, VAO;
 Shader* shader;
-GLint window;
+GLint window; 
 
+std::vector<voxel*> VOXELS;
 
 
 float deltaTime = 0.0f;
@@ -21,11 +22,21 @@ float pitch = 0.0f;
 bool rightMouseButtonPressed = false;
 int lastX = 400, lastY = 300;
 
-void addVoxel(glm::vec3 pos = glm::vec3(0.0f), glm::vec3 rot = glm::vec3(0.0f), glm::vec3 scl = glm::vec3(1.0f))
+void addVoxel(glm::vec3 pos, glm::vec3 rot, glm::vec3 scl)
 {
-    kubyk_voxel::voxel* buffer_voxel = new kubyk_voxel::voxel("testCube", pos, rot, scl);
-    kubyk_voxel::VOXELS.push_back(buffer_voxel);
+    voxel* buffer_voxel = new voxel("testCube", pos, rot, scl);
+    VOXELS.push_back(buffer_voxel);
 }
+void addVoxelFloat(float pos[3], float rot[3], float scl[3])
+{
+    glm::vec3 cpp_pos = glm::vec3(pos[0], pos[1], pos[2]);
+    glm::vec3 cpp_rot = glm::vec3(rot[0], rot[1], rot[2]);
+    glm::vec3 cpp_scl = glm::vec3(scl[0], scl[1], scl[2]);
+
+    addVoxel(cpp_pos, cpp_rot, cpp_scl);
+}
+
+
 
 void processInput(unsigned char key, int x, int y) {
     glm::vec3 cameraRight = glm::normalize(glm::cross(cameraFront, cameraUp));
@@ -176,9 +187,9 @@ void display() {
     shader->setVec3("viewPos", glm::vec3(0.0f, 0.0f, -3.0f));
 
     
-    for (size_t i = 0; i < kubyk_voxel::VOXELS.size(); ++i) {
+    for (size_t i = 0; i < VOXELS.size(); ++i) {
         
-        shader->setMat4("model", kubyk_voxel::VOXELS[i]->model);
+        shader->setMat4("model", VOXELS[i]->model);
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         std::cout << i << std::endl;
@@ -189,10 +200,11 @@ void display() {
     glutSwapBuffers();
 }
 
+
 int gameInit(int argc, char** argv, const char* gameName) {
 
     float pos[3] = { 1.0f, 1.0f, 1.0f };
-    kubyk_voxel::addVoxelPYTHON(pos, pos, pos);
+    addVoxelFloat(pos, pos, pos);
     //addVoxel(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);

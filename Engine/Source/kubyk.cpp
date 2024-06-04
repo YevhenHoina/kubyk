@@ -1,3 +1,4 @@
+#include "core/engineWindow/engineWindow.h"
 #include "core/gameWindow/gameWindow.h"
 #include <iostream>
 
@@ -5,10 +6,11 @@
 
 
 
-int main(int argc, char** argv, bool is_game)
+int main(int argc, char** argv)
 {
+	bool is_game = false;
+
+	gameInit(argc, argv, "myGame");
 	
-	const char* gameName = "myGame";
-	gameInit(argc, argv, gameName);
 	return 1;
 }

@@ -76,6 +76,9 @@
     <Filter Include="include\stb_image">
       <UniqueIdentifier>{631FF594-CF35-F32A-18AD-7E4C8402C4B2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="core\engineWindow">
+      <UniqueIdentifier>{0a5814a8-afc3-46ba-be7d-26ae9b0a5a3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\core\core.h">
@@ -1584,9 +1587,6 @@
     <ClInclude Include="Source\include\assimp\version.h">
       <Filter>include\assimp</Filter>
     </ClInclude>
-    <ClInclude Include="Source\include\glad\glad.h">
-      <Filter>include\glad</Filter>
-    </ClInclude>
     <ClInclude Include="Source\include\mui\browser.h">
       <Filter>include\mui</Filter>
     </ClInclude>
@@ -1614,6 +1614,9 @@
     <ClInclude Include="Source\include\stb_image\stb_image.h">
       <Filter>include\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="Source\core\engineWindow\engineWindow.h">
+      <Filter>core\engineWindow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\core\elements\mesh\kubyk_voxel.cpp">
@@ -1628,7 +1631,6 @@
     <ClCompile Include="Source\core\render\shader_util.cpp">
       <Filter>core\render</Filter>
     </ClCompile>
-    <ClCompile Include="Source\glad.c" />
     <ClCompile Include="Source\include\GLM\detail\glm.cpp">
       <Filter>include\GLM\detail</Filter>
     </ClCompile>
@@ -1660,6 +1662,10 @@
       <Filter>include\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="Source\kubyk.cpp" />
+    <ClCompile Include="Source\core\engineWindow\engineWindow.cpp">
+      <Filter>core\engineWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\core\core.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\core\shaders\fragment_shader.fs">

@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\core\engineWindow\engineWindow.h" />
     <ClInclude Include="Source\core\core.h" />
     <ClInclude Include="Source\core\elements\mesh\kubyk_voxel.h" />
     <ClInclude Include="Source\core\gameWindow\Shader.h" />
@@ -649,7 +650,6 @@
     <ClInclude Include="Source\include\assimp\vector3.h" />
     <ClInclude Include="Source\include\assimp\vector3.inl" />
     <ClInclude Include="Source\include\assimp\version.h" />
-    <ClInclude Include="Source\include\glad\glad.h" />
     <ClInclude Include="Source\include\mui\browser.h" />
     <ClInclude Include="Source\include\mui\displaylist.h" />
     <ClInclude Include="Source\include\mui\gizmo.h" />
@@ -661,11 +661,12 @@
     <ClInclude Include="Source\include\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\core\core.cpp" />
+    <ClCompile Include="Source\core\engineWindow\engineWindow.cpp" />
     <ClCompile Include="Source\core\elements\mesh\kubyk_voxel.cpp" />
     <ClCompile Include="Source\core\gameWindow\Shader.cpp" />
     <ClCompile Include="Source\core\gameWindow\gameWindow.cpp" />
     <ClCompile Include="Source\core\render\shader_util.cpp" />
-    <ClCompile Include="Source\glad.c" />
     <ClCompile Include="Source\include\GLM\detail\glm.cpp" />
     <ClCompile Include="Source\include\ImGui\imgui.cpp" />
     <ClCompile Include="Source\include\ImGui\imgui_demo.cpp" />

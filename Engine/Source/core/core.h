@@ -1,7 +1,7 @@
 #pragma once
 
 //std includes
-#include <string>
+
 #include <algorithm>
 #include <vector>
 #include <fstream>
@@ -9,12 +9,7 @@
 #include <iostream>
 #include <memory>
 
-//imgui includes
-#include "imgui/imgui.h"
-#include "imgui/imgui_impl_glfw.h"
-#include "imgui/imgui_impl_opengl3.h"
 
-//OpenGL inludes
 #include <stdio.h>
 #include <GL/glew.h>
 #include <GL/glut.h>
@@ -30,10 +25,18 @@
 
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/transform.hpp>
+#include <string>
+
+//OpenGL inludes
 
 
 
 
+namespace container
+{
+    
+
+}
 
 struct COLOR {
     GLclampf R;
