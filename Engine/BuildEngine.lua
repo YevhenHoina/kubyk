@@ -9,7 +9,11 @@ project "kubykEngine"
    "Source/**.cpp",
    "Source/**.c",
    "Source/**.hpp",
-   "Source/**.inl"}
+   "Source/**.inl",
+   "Source/**.fs",
+   "Source/**.vs",
+   "Source/**.py"
+    }
    includedirs { 
     "$(SolutionDir)Engine/Source/inсlude/assimp",
     "$(SolutionDir)Engine/Source/inсlude/GL",
@@ -18,6 +22,7 @@ project "kubykEngine"
     "$(SolutionDir)Engine/Source/inсlude/glad",
     "$(SolutionDir)Engine/Source/inсlude/KHR",
     "$(SolutionDir)Engine/Source/inсlude/ImGui",
+    "$(SolutionDir)Engine/Source/include",
     "$(SolutionDir)Engine/Source"
 
    }

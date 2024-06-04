@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WINDOWS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine\Source\inсlude\assimp;$(SolutionDir)Engine\Source\inсlude\GL;$(SolutionDir)Engine\Source\inсlude\GLM;$(SolutionDir)Engine\Source\inсlude\GLSW;$(SolutionDir)Engine\Source\inсlude\glad;$(SolutionDir)Engine\Source\inсlude\KHR;$(SolutionDir)Engine\Source\inсlude\ImGui;$(SolutionDir)Engine\Source;$(SolutionDir)Project\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Engine\Source\inсlude\assimp;$(SolutionDir)Engine\Source\inсlude\GL;$(SolutionDir)Engine\Source\inсlude\GLM;$(SolutionDir)Engine\Source\inсlude\GLSW;$(SolutionDir)Engine\Source\inсlude\glad;$(SolutionDir)Engine\Source\inсlude\KHR;$(SolutionDir)Engine\Source\inсlude\ImGui;$(SolutionDir)Engine\Source\include;$(SolutionDir)Engine\Source;$(SolutionDir)Project\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -99,7 +99,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WINDOWS;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine\Source\inсlude\assimp;$(SolutionDir)Engine\Source\inсlude\GL;$(SolutionDir)Engine\Source\inсlude\GLM;$(SolutionDir)Engine\Source\inсlude\GLSW;$(SolutionDir)Engine\Source\inсlude\glad;$(SolutionDir)Engine\Source\inсlude\KHR;$(SolutionDir)Engine\Source\inсlude\ImGui;$(SolutionDir)Engine\Source;$(SolutionDir)Project\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Engine\Source\inсlude\assimp;$(SolutionDir)Engine\Source\inсlude\GL;$(SolutionDir)Engine\Source\inсlude\GLM;$(SolutionDir)Engine\Source\inсlude\GLSW;$(SolutionDir)Engine\Source\inсlude\glad;$(SolutionDir)Engine\Source\inсlude\KHR;$(SolutionDir)Engine\Source\inсlude\ImGui;$(SolutionDir)Engine\Source\include;$(SolutionDir)Engine\Source;$(SolutionDir)Project\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -125,7 +125,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WINDOWS;DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine\Source\inсlude\assimp;$(SolutionDir)Engine\Source\inсlude\GL;$(SolutionDir)Engine\Source\inсlude\GLM;$(SolutionDir)Engine\Source\inсlude\GLSW;$(SolutionDir)Engine\Source\inсlude\glad;$(SolutionDir)Engine\Source\inсlude\KHR;$(SolutionDir)Engine\Source\inсlude\ImGui;$(SolutionDir)Engine\Source;$(SolutionDir)Project\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Engine\Source\inсlude\assimp;$(SolutionDir)Engine\Source\inсlude\GL;$(SolutionDir)Engine\Source\inсlude\GLM;$(SolutionDir)Engine\Source\inсlude\GLSW;$(SolutionDir)Engine\Source\inсlude\glad;$(SolutionDir)Engine\Source\inсlude\KHR;$(SolutionDir)Engine\Source\inсlude\ImGui;$(SolutionDir)Engine\Source\include;$(SolutionDir)Engine\Source;$(SolutionDir)Project\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>

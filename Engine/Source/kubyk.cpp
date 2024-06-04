@@ -1,10 +1,14 @@
-#include "core/interface/engine_window.h"
-#include "core/interface/create_project_window.h"
+#include "core/gameWindow/gameWindow.h"
 #include <iostream>
 
-int main(int, char**, bool is_game)
+
+
+
+
+int main(int argc, char** argv, bool is_game)
 {
-	std::cout << "hello world";
-	main1();
+	
+	const char* gameName = "myGame";
+	gameInit(argc, argv, gameName);
 	return 1;
 }

@@ -4,11 +4,20 @@
     <Filter Include="core">
       <UniqueIdentifier>{4E40957C-3A77-960D-E363-7C10CF79120F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="core\elements">
+      <UniqueIdentifier>{7A919F59-E651-1B90-AF8C-640D1B0C606C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\elements\mesh">
+      <UniqueIdentifier>{968F2791-8273-E8E6-EBD3-E239D7D6D268}</UniqueIdentifier>
+    </Filter>
     <Filter Include="core\gameWindow">
       <UniqueIdentifier>{8FB1BC1F-FB3C-2AE4-044E-ADD8705886E4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="core\interface">
-      <UniqueIdentifier>{CE01EEA8-BACF-E1AE-A363-52D58FD0BD13}</UniqueIdentifier>
+    <Filter Include="core\render">
+      <UniqueIdentifier>{1D0F7B87-89C4-F37C-12B9-ED537E6DEA80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\shaders">
+      <UniqueIdentifier>{476BEBC9-33CE-7A6E-DC53-B324C89546F1}</UniqueIdentifier>
     </Filter>
     <Filter Include="include">
       <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
@@ -64,22 +73,25 @@
     <Filter Include="include\mui">
       <UniqueIdentifier>{03F1C031-6FA6-3927-F89A-33FE644F302B}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\stb_image">
+      <UniqueIdentifier>{631FF594-CF35-F32A-18AD-7E4C8402C4B2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\core\gameWindow\game.h">
+    <ClInclude Include="Source\core\core.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\core\elements\mesh\kubyk_voxel.h">
+      <Filter>core\elements\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\core\gameWindow\Shader.h">
       <Filter>core\gameWindow</Filter>
     </ClInclude>
-    <ClInclude Include="Source\core\interface\KubykEngine.h">
-      <Filter>core\interface</Filter>
+    <ClInclude Include="Source\core\gameWindow\gameWindow.h">
+      <Filter>core\gameWindow</Filter>
     </ClInclude>
-    <ClInclude Include="Source\core\interface\create_project_window.h">
-      <Filter>core\interface</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\core\interface\engine_window.h">
-      <Filter>core\interface</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\core\interface\scene.h">
-      <Filter>core\interface</Filter>
+    <ClInclude Include="Source\core\render\shader_util.h">
+      <Filter>core\render</Filter>
     </ClInclude>
     <ClInclude Include="Source\include\GL\eglew.h">
       <Filter>include\GL</Filter>
@@ -1599,19 +1611,22 @@
     <ClInclude Include="Source\include\mui\vslider.h">
       <Filter>include\mui</Filter>
     </ClInclude>
+    <ClInclude Include="Source\include\stb_image\stb_image.h">
+      <Filter>include\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\core\gameWindow\game.cpp">
+    <ClCompile Include="Source\core\elements\mesh\kubyk_voxel.cpp">
+      <Filter>core\elements\mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\core\gameWindow\Shader.cpp">
       <Filter>core\gameWindow</Filter>
     </ClCompile>
-    <ClCompile Include="Source\core\interface\create_project_window.cpp">
-      <Filter>core\interface</Filter>
+    <ClCompile Include="Source\core\gameWindow\gameWindow.cpp">
+      <Filter>core\gameWindow</Filter>
     </ClCompile>
-    <ClCompile Include="Source\core\interface\engine_window.cpp">
-      <Filter>core\interface</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\core\interface\scene.cpp">
-      <Filter>core\interface</Filter>
+    <ClCompile Include="Source\core\render\shader_util.cpp">
+      <Filter>core\render</Filter>
     </ClCompile>
     <ClCompile Include="Source\glad.c" />
     <ClCompile Include="Source\include\GLM\detail\glm.cpp">
@@ -1641,6 +1656,17 @@
     <ClCompile Include="Source\include\ImGui\imgui_widgets.cpp">
       <Filter>include\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="Source\include\stb_image\stb_image.cpp">
+      <Filter>include\stb_image</Filter>
+    </ClCompile>
     <ClCompile Include="Source\kubyk.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\core\shaders\fragment_shader.fs">
+      <Filter>core\shaders</Filter>
+    </None>
+    <None Include="Source\core\shaders\vertex_shader.vs">
+      <Filter>core\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

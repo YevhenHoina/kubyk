@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WINDOWS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine\Source\inсlude\assimp;$(SolutionDir)Engine\Source\inсlude\GL;$(SolutionDir)Engine\Source\inсlude\GLM;$(SolutionDir)Engine\Source\inсlude\GLSW;$(SolutionDir)Engine\Source\inсlude\glad;$(SolutionDir)Engine\Source\inсlude\KHR;$(SolutionDir)Engine\Source\inсlude\ImGui;$(SolutionDir)Engine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Engine\Source\inсlude\assimp;$(SolutionDir)Engine\Source\inсlude\GL;$(SolutionDir)Engine\Source\inсlude\GLM;$(SolutionDir)Engine\Source\inсlude\GLSW;$(SolutionDir)Engine\Source\inсlude\glad;$(SolutionDir)Engine\Source\inсlude\KHR;$(SolutionDir)Engine\Source\inсlude\ImGui;$(SolutionDir)Engine\Source\include;$(SolutionDir)Engine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -99,7 +99,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WINDOWS;RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine\Source\inсlude\assimp;$(SolutionDir)Engine\Source\inсlude\GL;$(SolutionDir)Engine\Source\inсlude\GLM;$(SolutionDir)Engine\Source\inсlude\GLSW;$(SolutionDir)Engine\Source\inсlude\glad;$(SolutionDir)Engine\Source\inсlude\KHR;$(SolutionDir)Engine\Source\inсlude\ImGui;$(SolutionDir)Engine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Engine\Source\inсlude\assimp;$(SolutionDir)Engine\Source\inсlude\GL;$(SolutionDir)Engine\Source\inсlude\GLM;$(SolutionDir)Engine\Source\inсlude\GLSW;$(SolutionDir)Engine\Source\inсlude\glad;$(SolutionDir)Engine\Source\inсlude\KHR;$(SolutionDir)Engine\Source\inсlude\ImGui;$(SolutionDir)Engine\Source\include;$(SolutionDir)Engine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -125,7 +125,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WINDOWS;DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine\Source\inсlude\assimp;$(SolutionDir)Engine\Source\inсlude\GL;$(SolutionDir)Engine\Source\inсlude\GLM;$(SolutionDir)Engine\Source\inсlude\GLSW;$(SolutionDir)Engine\Source\inсlude\glad;$(SolutionDir)Engine\Source\inсlude\KHR;$(SolutionDir)Engine\Source\inсlude\ImGui;$(SolutionDir)Engine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Engine\Source\inсlude\assimp;$(SolutionDir)Engine\Source\inсlude\GL;$(SolutionDir)Engine\Source\inсlude\GLM;$(SolutionDir)Engine\Source\inсlude\GLSW;$(SolutionDir)Engine\Source\inсlude\glad;$(SolutionDir)Engine\Source\inсlude\KHR;$(SolutionDir)Engine\Source\inсlude\ImGui;$(SolutionDir)Engine\Source\include;$(SolutionDir)Engine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -147,11 +147,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Source\core\gameWindow\game.h" />
-    <ClInclude Include="Source\core\interface\KubykEngine.h" />
-    <ClInclude Include="Source\core\interface\create_project_window.h" />
-    <ClInclude Include="Source\core\interface\engine_window.h" />
-    <ClInclude Include="Source\core\interface\scene.h" />
+    <ClInclude Include="Source\core\core.h" />
+    <ClInclude Include="Source\core\elements\mesh\kubyk_voxel.h" />
+    <ClInclude Include="Source\core\gameWindow\Shader.h" />
+    <ClInclude Include="Source\core\gameWindow\gameWindow.h" />
+    <ClInclude Include="Source\core\render\shader_util.h" />
     <ClInclude Include="Source\include\GL\eglew.h" />
     <ClInclude Include="Source\include\GL\fgl.h" />
     <ClInclude Include="Source\include\GL\fglu.h" />
@@ -658,12 +658,13 @@
     <ClInclude Include="Source\include\mui\textlist.h" />
     <ClInclude Include="Source\include\mui\uicolor.h" />
     <ClInclude Include="Source\include\mui\vslider.h" />
+    <ClInclude Include="Source\include\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\core\gameWindow\game.cpp" />
-    <ClCompile Include="Source\core\interface\create_project_window.cpp" />
-    <ClCompile Include="Source\core\interface\engine_window.cpp" />
-    <ClCompile Include="Source\core\interface\scene.cpp" />
+    <ClCompile Include="Source\core\elements\mesh\kubyk_voxel.cpp" />
+    <ClCompile Include="Source\core\gameWindow\Shader.cpp" />
+    <ClCompile Include="Source\core\gameWindow\gameWindow.cpp" />
+    <ClCompile Include="Source\core\render\shader_util.cpp" />
     <ClCompile Include="Source\glad.c" />
     <ClCompile Include="Source\include\GLM\detail\glm.cpp" />
     <ClCompile Include="Source\include\ImGui\imgui.cpp" />
@@ -674,7 +675,12 @@
     <ClCompile Include="Source\include\ImGui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Source\include\ImGui\imgui_tables.cpp" />
     <ClCompile Include="Source\include\ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="Source\include\stb_image\stb_image.cpp" />
     <ClCompile Include="Source\kubyk.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\core\shaders\fragment_shader.fs" />
+    <None Include="Source\core\shaders\vertex_shader.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
