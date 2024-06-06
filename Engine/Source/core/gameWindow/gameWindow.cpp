@@ -5,7 +5,7 @@
 
 GLuint VBO, VAO;
 Shader* shader;
-GLint window; 
+GLint window;
 
 std::vector<voxel*> VOXELS;
 
@@ -186,17 +186,17 @@ void display() {
     shader->setVec3("dirLight.specular", glm::vec3(1.0f, 1.0f, 1.0f));
     shader->setVec3("viewPos", glm::vec3(0.0f, 0.0f, -3.0f));
 
-    
+
     for (size_t i = 0; i < VOXELS.size(); ++i) {
-        
+
         shader->setMat4("model", VOXELS[i]->model);
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         std::cout << i << std::endl;
     }
-    
 
-    
+
+
     glutSwapBuffers();
 }
 
@@ -211,7 +211,7 @@ int gameInit(int argc, char** argv, const char* gameName) {
     glutInitWindowSize(1920, 1080);
     window = glutCreateWindow(gameName);
 
-    
+
 
     glewInit();
     glEnable(GL_DEPTH_TEST);

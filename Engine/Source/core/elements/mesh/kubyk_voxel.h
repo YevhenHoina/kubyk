@@ -39,13 +39,7 @@ class voxel
 
 
 
-namespace kubyk_voxel
-{
-    
-    void addVoxel(glm::vec3 pos = glm::vec3(0.0f), glm::vec3 rot = glm::vec3(0.0f), glm::vec3 scl = glm::vec3(1.0f));
-    void addVoxelFloat(float pos[3], float rot[3], float scl[3]);
 
-}
  
 
    

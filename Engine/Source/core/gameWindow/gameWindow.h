@@ -8,6 +8,4 @@
 
 
 
-
-
 int gameInit(int argc, char** argv, const char* gameName);

@@ -9,6 +9,11 @@
 #include <iostream>
 #include <memory>
 
+#include "include/imgui/imgui.h"
+#include <include/imgui/imgui_impl_glut.h>
+#include "include/imgui/imgui_impl_glfw.h"
+#include <include/imgui/imgui_impl_opengl2.h>
+#include "include/imgui/imgui_impl_opengl3.h"
 
 #include <stdio.h>
 #include <GL/glew.h>

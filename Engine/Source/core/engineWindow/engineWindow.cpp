@@ -1,7 +1,7 @@
+#include "engineWindow.h"
 
 
 
-#include "core/core.h"
 // Dear ImGui: standalone example application for GLFW + OpenGL 3, using programmable pipeline
 // (GLFW is a cross-platform general purpose library for handling windows, inputs, OpenGL/Vulkan/Metal graphics context creation, etc.)
 
@@ -10,9 +10,8 @@
 // - Getting Started      https://dearimgui.com/getting-started
 // - Documentation        https://dearimgui.com/docs (same as your local docs/ folder).
 // - Introduction, links and more at the top of imgui.cpp
-#include "include/imgui/imgui.h"
-#include "include/imgui/imgui_impl_glfw.h"
-#include "include/imgui/imgui_impl_opengl3.h"
+
+
 
 
 #include <stdio.h>
@@ -34,31 +33,85 @@
 #include "../libs/emscripten/emscripten_mainloop_stub.h"
 #endif
 
+const int windowHeight = 1080.0f;
+const int windowWidth = 1920.0f;
+
 static void glfw_error_callback(int error, const char* description)
 {
     fprintf(stderr, "GLFW Error %d: %s\n", error, description);
 }
 
+const float sensitivity = 0.1f;
+bool kubykMiddleMouseButtonPressed = false;
+int kubyk_last_mouse_posX = 0, kubyk_last_mouse_posY = 0;
+int xoffset = 0;
+int yoffset = 0;
 
-struct Node {
-    bool isOpen;
-    std::string title;
-    float position[3];
-    float rotation[3];
-    float scale[3];
-};
+void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
+    if (button == GLFW_MOUSE_BUTTON_MIDDLE)
+    {
+        if (action == GLFW_PRESS)
+        {
+            kubykMiddleMouseButtonPressed = true;
+            double xpos, ypos;
+            glfwGetCursorPos(window, &xpos, &ypos);
+            kubyk_last_mouse_posX = static_cast<int>(xpos);
+            kubyk_last_mouse_posY = static_cast<int>(ypos);
+        }
+        else if (action == GLFW_RELEASE)
+        {
+            kubykMiddleMouseButtonPressed = false;
+           
+        }
+    }
+}
 
-// Global vector to hold all the nodes
-std::vector<Node> nodes;
 
+
+void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
+{
+    if (kubykMiddleMouseButtonPressed)
+    {
+        int x = static_cast<int>(xpos);
+        int y = static_cast<int>(ypos);
+        xoffset += x - kubyk_last_mouse_posX;
+        yoffset += kubyk_last_mouse_posY - y; // Reversed since y-coordinates go from bottom to top
+
+        // Update the last positions
+        kubyk_last_mouse_posX = x;
+        kubyk_last_mouse_posY = y;
+
+        // Use xoffset and yoffset for any necessary logic
+    }
+}
+
+std::vector<addVoxel*> nodes;
 
 // Function to add a new node
-void addNode() {
+float last_node_coordX = 300.0f;
+float last_node_coordY = 70.0f;
+
+void addNode_addVoxel(float x, float y) {
     static int nodeCounter = 0;
-    nodes.push_back({ true, "Node " + std::to_string(nodeCounter++), {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f} });
+    // Adjust the position of new nodes to avoid overlap
+    float nodeOffset = 300.0f; // Distance to avoid overlap
+    
+    last_node_coordX += nodeOffset;
+    last_node_coordY += last_node_coordY < 820 ? nodeOffset / 2 : -600;
+
+    addVoxel* newNode = new addVoxel(last_node_coordX, last_node_coordY);
+    newNode->title = " Add voxel";
+    nodes.push_back(newNode);
 }
+
+
+
+
+
+void renderImGui(int argc, char** argv);
+
 // Main code
-int applicationInit(int argc, char** argv, const char* gameName)
+int kubykEngineInit(int argc, char** argv)
 {
     glfwSetErrorCallback(glfw_error_callback);
     if (!glfwInit())
@@ -87,12 +140,15 @@ int applicationInit(int argc, char** argv, const char* gameName)
     //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // 3.0+ only
 #endif
 
-    // Create window with graphics context
-    GLFWwindow* window = glfwCreateWindow(1920, 1080, "Kubyk", nullptr, nullptr);
-    if (window == nullptr)
+    GLFWwindow* kubykWindow = glfwCreateWindow(windowWidth, windowHeight, "Dear ImGui GLFW+OpenGL3 example", nullptr, nullptr);
+    if (kubykWindow == nullptr)
         return 1;
-    glfwMakeContextCurrent(window);
+    glfwMakeContextCurrent(kubykWindow);
     glfwSwapInterval(1); // Enable vsync
+
+    // Set the GLFW callbacks
+    glfwSetMouseButtonCallback(kubykWindow, mouseButtonCallback);
+    glfwSetCursorPosCallback(kubykWindow, cursorPositionCallback);
 
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
@@ -106,7 +162,7 @@ int applicationInit(int argc, char** argv, const char* gameName)
     //ImGui::StyleColorsLight();
 
     // Setup Platform/Renderer backends
-    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplGlfw_InitForOpenGL(kubykWindow, true);
 #ifdef __EMSCRIPTEN__
     ImGui_ImplGlfw_InstallEmscriptenCanvasResizeCallback("#canvas");
 #endif
@@ -132,7 +188,7 @@ int applicationInit(int argc, char** argv, const char* gameName)
     // Our state
     bool show_demo_window = true;
     bool show_another_window = false;
-    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+    ImVec4 clear_color = ImVec4(0.26f, 0.34f, 0.38f, 1.00f);
 
     // Main loop
 #ifdef __EMSCRIPTEN__
@@ -141,10 +197,10 @@ int applicationInit(int argc, char** argv, const char* gameName)
     io.IniFilename = nullptr;
     EMSCRIPTEN_MAINLOOP_BEGIN
 #else
-    while (!glfwWindowShouldClose(window))
+    while (!glfwWindowShouldClose(kubykWindow))
 #endif
     {
-        // Poll and handle events (inputs, window resize, etc.)
+        // Poll and handle events (inputs, kubykWindow resize, etc.)
         // You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
         // - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application, or clear/overwrite your copy of the mouse data.
         // - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application, or clear/overwrite your copy of the keyboard data.
@@ -156,100 +212,167 @@ int applicationInit(int argc, char** argv, const char* gameName)
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        static float f = 0.0f;
-        static int counter = 0;
+        renderImGui(argc, argv);
 
-        
-        ImGuiWindowFlags window_flags = 0;
-            window_flags |= ImGuiWindowFlags_NoMove;
-            window_flags |= ImGuiWindowFlags_NoResize;
-            window_flags |= ImGuiWindowFlags_NoCollapse;
-
-        ImGui::Begin("Inspector", 0, window_flags);
-        ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-        ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
-        ImGui::Checkbox("Another Window", &show_another_window);
-        ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-        ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
-        ImGui::SetWindowPos(ImVec2(0, 0));
-        ImGui::SetWindowSize(ImVec2(300, 1920));
-        if (ImGui::Button("Add Node")) {
-            addNode();
-        }
-        if (ImGui::Button("Launch Game")) {
-            //calculateNodes();
-            applicationInit(argc, argv, "myGame");
-        }
-
-        float nextWindowX = 500.0f;
-        float windowWidth = 200.0f; // Assuming each window has a fixed width of 200
-        float windowHeight = 200.0f; // Assuming each window has a fixed height of 200
-        float padding = 210.0f;
-
-        // Iterate through the nodes and display their windows
-        for (size_t i = 0; i < nodes.size(); ++i) {
-            if (nodes[i].isOpen) {
-                ImGui::SetNextWindowPos(ImVec2(nextWindowX + (padding * i), 10.0f), ImGuiCond_Always);
-                ImGui::SetNextWindowSize(ImVec2(windowWidth, windowHeight), ImGuiCond_Always);
-
-                ImGui::Begin(nodes[i].title.c_str(), &nodes[i].isOpen);
-
-                if (ImGui::BeginTabBar("Tabs")) {
-                    if (ImGui::BeginTabItem("Position")) {
-                        ImGui::SliderFloat("X", &nodes[i].position[0], -1.0f, 1.0f);
-                        ImGui::SliderFloat("Y", &nodes[i].position[1], -1.0f, 1.0f);
-                        ImGui::SliderFloat("Z", &nodes[i].position[2], -1.0f, 1.0f);
-                        ImGui::EndTabItem();
-                    }
-                    if (ImGui::BeginTabItem("Rotation")) {
-                        ImGui::SliderFloat("X", &nodes[i].rotation[0], -1.0f, 1.0f);
-                        ImGui::SliderFloat("Y", &nodes[i].rotation[1], -1.0f, 1.0f);
-                        ImGui::SliderFloat("Z", &nodes[i].rotation[2], -1.0f, 1.0f);
-                        ImGui::EndTabItem();
-                    }
-                    if (ImGui::BeginTabItem("Scale")) {
-                        ImGui::SliderFloat("X", &nodes[i].scale[0], -1.0f, 1.0f);
-                        ImGui::SliderFloat("Y", &nodes[i].scale[1], -1.0f, 1.0f);
-                        ImGui::SliderFloat("Z", &nodes[i].scale[2], -1.0f, 1.0f);
-                        ImGui::EndTabItem();
-                    }
-                    ImGui::EndTabBar();
-                }
-
-                ImGui::End();
-            }
-        }
-        ImGui::SameLine();
-        ImGui::Text("counter = %d", counter);
-
-        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
-
-        ImGui::End();
-
-        // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
-        
         // Rendering
         ImGui::Render();
         int display_w, display_h;
-        glfwGetFramebufferSize(window, &display_w, &display_h);
+        glfwGetFramebufferSize(kubykWindow, &display_w, &display_h);
         glViewport(0, 0, display_w, display_h);
         glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);
         glClear(GL_COLOR_BUFFER_BIT);
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-        glfwSwapBuffers(window);
+        glfwSwapBuffers(kubykWindow);
     }
 #ifdef __EMSCRIPTEN__
     EMSCRIPTEN_MAINLOOP_END;
 #endif
-
     // Cleanup
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
 
-    glfwDestroyWindow(window);
+    glfwDestroyWindow(kubykWindow);
     glfwTerminate();
 
     return 0;
+}
+
+void renderImGui(int argc, char** argv) {
+    // Calculate sizes
+    float leftPanelWidth = windowWidth * 0.15f;
+    float bottomPanelHeight = windowHeight * 0.3f;
+
+    ImVec4 opaqueWindowBg = ImVec4(0.15f, 0.175f, 0.192f, 1.0f); // Opaque
+    ImVec4 translucentWindowBg = ImVec4(0.15f, 0.175f, 0.192f, 0.70f); // Translucent
+    ImVec4 opaqueButton = ImVec4(0.1f, 0.09f, 0.08f, 1.00f); // Opaque button color
+    ImVec4 translucentButton = ImVec4(0.7f, 0.09f, 0.07f, 0.50f); // Translucent button color
+    ImU32 lineColor = IM_COL32(254, 180, 28, 255);
+    ImU32 arrowColor = IM_COL32(168, 197, 69, 255);
+
+    ImGuiWindowFlags window_flags = 0;
+    window_flags |= ImGuiWindowFlags_NoResize;
+    window_flags |= ImGuiWindowFlags_NoMove;
+    window_flags |= ImGuiWindowFlags_NoTitleBar;
+    window_flags |= ImGuiWindowFlags_NoBackground;
+    window_flags |= ImGuiWindowFlags_NoMouseInputs;
+
+    float x = 350 + xoffset;
+    float y = 250 - yoffset;
+
+    ImGui::SetNextWindowPos(ImVec2(x, y), ImGuiCond_Always);
+    ImGui::SetNextWindowSize(ImVec2(100, 115), ImGuiCond_Always);
+
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, opaqueButton);
+    ImGui::Begin("Begin", 0, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
+    ImGui::GetWindowDrawList()->AddTriangleFilled(ImVec2(x + 29, y + 90), ImVec2(x + 75, y + 65), ImVec2(x + 29, y + 40), arrowColor);
+    ImGui::End();
+    ImGui::PopStyleColor(1);
+    for (size_t i = 0; i < nodes.size(); ++i) {
+        addVoxel* node = nodes[i];
+
+        if (node->isOpen) {
+            float x = node->nodePosX + xoffset;
+            float y = node->nodePosY - yoffset;
+            // Ensure node positions are set properly and apply the global offset
+            ImGui::SetNextWindowPos(ImVec2(x, y), ImGuiCond_Always);
+            ImGui::SetNextWindowSize(ImVec2(node->nodeSizeX, node->nodeSizeY), ImGuiCond_Always);
+            ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 10.0f);
+            ImGui::PushStyleColor(ImGuiCol_WindowBg, opaqueWindowBg);
+            ImGui::PushStyleColor(ImGuiCol_Button, translucentButton);
+
+            
+
+            // Ensure the window is draggable and remains uncollapsed
+            std::string id = " Add voxel##" + std::to_string(i);
+            ImGui::Begin(id.c_str(), &node->isOpen, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
+            
+            // Make nodes always draggable
+            if (ImGui::IsWindowHovered(ImGuiHoveredFlags_RootAndChildWindows) && ImGui::IsMouseDragging(ImGuiMouseButton_Left)) {
+                ImVec2 dragDelta = ImGui::GetMouseDragDelta(ImGuiMouseButton_Left);
+                node->nodePosX += dragDelta.x;
+                node->nodePosY += dragDelta.y;
+                ImGui::ResetMouseDragDelta();
+            }
+            
+            
+            if (ImGui::BeginTabBar("Tabs")) {
+                if (ImGui::BeginTabItem("Position")) {
+                    ImGui::SliderFloat("X", &node->position[0], -1.0f, 1.0f);
+                    ImGui::SliderFloat("Y", &node->position[1], -1.0f, 1.0f);
+                    ImGui::SliderFloat("Z", &node->position[2], -1.0f, 1.0f);
+                    ImGui::EndTabItem();
+                }
+                if (ImGui::BeginTabItem("Rotation")) {
+                    ImGui::SliderFloat("X", &node->rotation[0], -1.0f, 1.0f);
+                    ImGui::SliderFloat("Y", &node->rotation[1], -1.0f, 1.0f);
+                    ImGui::SliderFloat("Z", &node->rotation[2], -1.0f, 1.0f);
+                    ImGui::EndTabItem();
+                }
+                if (ImGui::BeginTabItem("Scale")) {
+                    ImGui::SliderFloat("X", &node->scale[0], -1.0f, 1.0f);
+                    ImGui::SliderFloat("Y", &node->scale[1], -1.0f, 1.0f);
+                    ImGui::SliderFloat("Z", &node->scale[2], -1.0f, 1.0f);
+                    ImGui::EndTabItem();
+                }
+                ImGui::EndTabBar();
+            }
+
+            ImGui::End();
+
+            
+            ImGui::PopStyleVar();
+            ImGui::PopStyleColor(2);
+            ImGui::SetNextWindowSize(ImVec2(windowWidth - leftPanelWidth, windowHeight - bottomPanelHeight), ImGuiCond_Always);
+            ImGui::SetNextWindowPos(ImVec2(leftPanelWidth, 0), ImGuiCond_Always);
+            ImGui::Begin("Top Right Empty Space", nullptr, window_flags);
+            ImGui::GetWindowDrawList()->AddLine(ImVec2(0.0f, 20.0f), ImVec2(500.0f, 20.0f), lineColor, 3.0f);
+
+            ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(442 + xoffset, 270 - yoffset), ImVec2(458 + xoffset, 280 - yoffset), lineColor, 4);
+
+            ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(x - 8, y + 20), ImVec2(x + 8, y + 30), lineColor, 4);
+            ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(x - 8 + node->nodeSizeX, y + 20), ImVec2(x + 8 + node->nodeSizeX, y + 30), lineColor, 4);
+            ImGui::End();
+        }
+    }
+
+    // Left Panel
+    window_flags = 0;
+    window_flags |= ImGuiWindowFlags_NoMove;
+    window_flags |= ImGuiWindowFlags_NoResize;
+    window_flags |= ImGuiWindowFlags_NoCollapse;
+
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, opaqueWindowBg);
+    ImGui::PushStyleColor(ImGuiCol_Button, opaqueButton);
+    ImGui::SetNextWindowSize(ImVec2(leftPanelWidth, windowHeight), ImGuiCond_Always);
+    ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
+    ImGui::Begin("Inspector", 0, window_flags);
+
+    if (ImGui::Button("Add Node")) {
+        addNode_addVoxel(last_node_coordX, last_node_coordY);
+    }
+    if (ImGui::Button("Launch Game")) {
+        gameInit(argc, argv, "myGame");
+    }
+    ImGui::End();
+    ImGui::PopStyleColor(2);
+
+    // Bottom Panel
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, opaqueWindowBg);
+    ImGui::PushStyleColor(ImGuiCol_Button, opaqueButton);
+    ImGui::SetNextWindowSize(ImVec2(windowWidth - leftPanelWidth, bottomPanelHeight), ImGuiCond_Always);
+    ImGui::SetNextWindowPos(ImVec2(leftPanelWidth, windowHeight - bottomPanelHeight), ImGuiCond_Always);
+    ImGui::Begin("Bottom Panel", 0, window_flags);
+    
+    ImGui::Text("This is the bottom panel.");
+    
+    ImGui::End();
+    ImGui::PopStyleColor(2);
+
+    
+
+    // Top Right Empty Space (using child window to avoid border and title)
+    
+    
 }
