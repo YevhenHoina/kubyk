@@ -10,7 +10,7 @@ int main(int argc, char** argv)
 {
 	bool is_game = false;
 
-	gameInit(argc, argv, "myGame");
+	kubykEngineInit(argc, argv);
 	
 	return 1;
 }

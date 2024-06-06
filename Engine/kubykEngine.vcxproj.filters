@@ -1617,6 +1617,9 @@
     <ClInclude Include="Source\core\engineWindow\engineWindow.h">
       <Filter>core\engineWindow</Filter>
     </ClInclude>
+    <ClInclude Include="Source\core\nodes\node.h" />
+    <ClInclude Include="Source\core\nodes\addVoxel.h" />
+    <ClInclude Include="Source\core\nodes\nodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\core\elements\mesh\kubyk_voxel.cpp">
@@ -1666,6 +1669,7 @@
       <Filter>core\engineWindow</Filter>
     </ClCompile>
     <ClCompile Include="Source\core\core.cpp" />
+    <ClCompile Include="Source\core\nodes\addVoxel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\core\shaders\fragment_shader.fs">
