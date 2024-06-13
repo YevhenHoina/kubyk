@@ -66,3 +66,5 @@ project "kubykProject"
        optimize "On"
        symbols "Off"
        debugenvs { "PATH=%PATH%;$(SolutionDir)\\Engine\\Binaries" }
+
+

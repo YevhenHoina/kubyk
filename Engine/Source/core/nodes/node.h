@@ -15,7 +15,7 @@ public:
 
 	float nodePosX = 550.0f;
 	float nodePosY = 250.0f;
-
+	float nodePos[2] = { nodePosX , nodePosY };
 	node(float x, float y) : nodePosX(x), nodePosY(y) {};
 	bool isMovable = true;
 

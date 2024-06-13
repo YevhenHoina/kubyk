@@ -12,4 +12,4 @@ OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
 
 
 include "Engine/BuildEngine.lua"
-include "Projects/BuildProject.lua"
+include "Project/BuildProject.lua"

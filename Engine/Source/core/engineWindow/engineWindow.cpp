@@ -110,9 +110,32 @@ void addNode_addVoxel(float x, float y) {
 
 void renderImGui(int argc, char** argv);
 
-// Main code
-int kubykEngineInit(int argc, char** argv)
+void constructGame()
 {
+    saveFile loadedSaveFile({}, nullptr);
+    loadedSaveFile.load("savefile.dat");
+    nodes.clear();
+    // Use loadedSaveFile...
+    std::cout << "Loaded file name: " << loadedSaveFile.saveName << std::endl;
+    for (const auto& voxel : loadedSaveFile.saved_addVoxel_nodes) {
+        voxel->nodePosX = voxel->nodePos[0];
+        voxel->nodePosY = voxel->nodePos[1];
+        nodes.push_back(voxel);
+    }
+
+    loadAdditionVoxels(nodes);
+
+
+}
+// Main code
+int kubykEngineInit(int argc, char** argv, bool is_game)
+{
+    if (is_game)
+    {
+        constructGame();
+
+        gameInit(argc, argv, "game");
+    }
     glfwSetErrorCallback(glfw_error_callback);
     if (!glfwInit())
         return 1;
@@ -239,6 +262,8 @@ int kubykEngineInit(int argc, char** argv)
     return 0;
 }
 
+
+
 void renderImGui(int argc, char** argv) {
     // Calculate sizes
     float leftPanelWidth = windowWidth * 0.15f;
@@ -359,8 +384,67 @@ void renderImGui(int argc, char** argv) {
     if (ImGui::Button("Add Node")) {
         addNode_addVoxel(last_node_coordX, last_node_coordY);
     }
-    if (ImGui::Button("Launch Game")) {
+    static bool openPopup = false;
+    if (ImGui::Button("Save project")) {
+        openPopup = true;
+    }
+    static char textBuffer[128] = "";
 
+    // Create a fullscreen semi-transparent rectangle for blur effect
+    if (openPopup)
+    {
+        ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
+        
+        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0, 0, 0, 0.5f)); // Adjust transparency here
+        ImGui::Begin("BlurBackground", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoInputs);
+        ImGui::End();
+        ImGui::PopStyleColor();
+    }
+
+    // Create a popup window with a text field
+    if (openPopup)
+    {
+        ImGui::OpenPopup("PopupSaveWindow");
+    }
+
+    if (ImGui::BeginPopupModal("PopupSaveWindow", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+    {
+        ImGui::Text("Enter some text:");
+        ImGui::InputText("##text", textBuffer, IM_ARRAYSIZE(textBuffer));
+        if (ImGui::Button("Save"))
+        {
+            saveFile mySave = saveFile(nodes, textBuffer);
+            
+            mySave.save(("savefile.dat"));
+            ImGui::CloseCurrentPopup();
+            openPopup = false;
+        }
+        if (ImGui::Button("Close"))
+        {
+            ImGui::CloseCurrentPopup();
+            openPopup = false;
+        }
+        ImGui::EndPopup();
+    }
+
+    if (ImGui::Button("Restore")) {
+        saveFile loadedSaveFile({}, nullptr);
+        loadedSaveFile.load("savefile.dat");
+        nodes.clear();
+        // Use loadedSaveFile...
+        std::cout << "Loaded file name: " << loadedSaveFile.saveName << std::endl;
+        for (const auto& voxel : loadedSaveFile.saved_addVoxel_nodes) {
+            voxel->nodePosX = voxel->nodePos[0];
+            voxel->nodePosY = voxel->nodePos[1];
+            nodes.push_back(voxel);
+        }
+
+        // Clean up
+        
+
+    }
+
+    if (ImGui::Button("Launch Game")) {
         
         loadAdditionVoxels(nodes);
         gameInit(argc, argv, "myGame");

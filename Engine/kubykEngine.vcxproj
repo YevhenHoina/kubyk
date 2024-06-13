@@ -151,13 +151,11 @@
     <ClInclude Include="Source\core\elements\mesh\kubyk_voxel.h" />
     <ClInclude Include="Source\core\engineWindow\engineWindow.h" />
     <ClInclude Include="Source\core\gameWindow\Shader.h" />
-    <ClInclude Include="Source\core\gameWindow\Texture.h" />
     <ClInclude Include="Source\core\gameWindow\gameWindow.h" />
     <ClInclude Include="Source\core\nodes\addVoxel.h" />
     <ClInclude Include="Source\core\nodes\connections\order.h" />
     <ClInclude Include="Source\core\nodes\node.h" />
     <ClInclude Include="Source\core\nodes\nodes.h" />
-    <ClInclude Include="Source\core\render\shader_util.h" />
     <ClInclude Include="Source\include\GL\eglew.h" />
     <ClInclude Include="Source\include\GL\fgl.h" />
     <ClInclude Include="Source\include\GL\fglu.h" />
@@ -683,11 +681,9 @@
     <ClCompile Include="Source\core\elements\mesh\kubyk_voxel.cpp" />
     <ClCompile Include="Source\core\engineWindow\engineWindow.cpp" />
     <ClCompile Include="Source\core\gameWindow\Shader.cpp" />
-    <ClCompile Include="Source\core\gameWindow\Texture.cpp" />
     <ClCompile Include="Source\core\gameWindow\gameWindow.cpp" />
     <ClCompile Include="Source\core\nodes\addVoxel.cpp" />
     <ClCompile Include="Source\core\nodes\connections\order.cpp" />
-    <ClCompile Include="Source\core\render\shader_util.cpp" />
     <ClCompile Include="Source\include\GLM\detail\glm.cpp" />
     <ClCompile Include="Source\include\ImGui\imgui.cpp" />
     <ClCompile Include="Source\include\ImGui\imgui_demo.cpp" />

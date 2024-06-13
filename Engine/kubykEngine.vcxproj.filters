@@ -99,9 +99,6 @@
     <ClInclude Include="Source\core\gameWindow\Shader.h">
       <Filter>core\gameWindow</Filter>
     </ClInclude>
-    <ClInclude Include="Source\core\gameWindow\Texture.h">
-      <Filter>core\gameWindow</Filter>
-    </ClInclude>
     <ClInclude Include="Source\core\gameWindow\gameWindow.h">
       <Filter>core\gameWindow</Filter>
     </ClInclude>
@@ -116,9 +113,6 @@
     </ClInclude>
     <ClInclude Include="Source\core\nodes\nodes.h">
       <Filter>core\nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\core\render\shader_util.h">
-      <Filter>core\render</Filter>
     </ClInclude>
     <ClInclude Include="Source\include\GL\eglew.h">
       <Filter>include\GL</Filter>
@@ -1691,9 +1685,6 @@
     <ClCompile Include="Source\core\gameWindow\Shader.cpp">
       <Filter>core\gameWindow</Filter>
     </ClCompile>
-    <ClCompile Include="Source\core\gameWindow\Texture.cpp">
-      <Filter>core\gameWindow</Filter>
-    </ClCompile>
     <ClCompile Include="Source\core\gameWindow\gameWindow.cpp">
       <Filter>core\gameWindow</Filter>
     </ClCompile>
@@ -1702,9 +1693,6 @@
     </ClCompile>
     <ClCompile Include="Source\core\nodes\connections\order.cpp">
       <Filter>core\nodes\connections</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\core\render\shader_util.cpp">
-      <Filter>core\render</Filter>
     </ClCompile>
     <ClCompile Include="Source\include\GLM\detail\glm.cpp">
       <Filter>include\GLM\detail</Filter>
