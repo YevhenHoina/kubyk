@@ -10,8 +10,17 @@
     <Filter Include="core\elements\mesh">
       <UniqueIdentifier>{968F2791-8273-E8E6-EBD3-E239D7D6D268}</UniqueIdentifier>
     </Filter>
+    <Filter Include="core\engineWindow">
+      <UniqueIdentifier>{EB5AE4EF-5771-E285-A0E8-6DA70C3EB30D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="core\gameWindow">
       <UniqueIdentifier>{8FB1BC1F-FB3C-2AE4-044E-ADD8705886E4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\nodes">
+      <UniqueIdentifier>{B6546B51-A20C-AD9E-0B14-86FAF7EA478F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\nodes\connections">
+      <UniqueIdentifier>{888A9096-7484-B9E8-5DF1-4FF9498A1F55}</UniqueIdentifier>
     </Filter>
     <Filter Include="core\render">
       <UniqueIdentifier>{1D0F7B87-89C4-F37C-12B9-ED537E6DEA80}</UniqueIdentifier>
@@ -67,17 +76,14 @@
     <Filter Include="include\assimp\port\AndroidJNI">
       <UniqueIdentifier>{CABBE3D0-B6E1-AD37-9F27-33038BECD203}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\glad">
-      <UniqueIdentifier>{30A0DB69-1C03-6B0E-C588-A3C4B1CA3691}</UniqueIdentifier>
+    <Filter Include="include\json">
+      <UniqueIdentifier>{F264DD69-DEC7-6C0E-874D-A5C4738F3891}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\mui">
       <UniqueIdentifier>{03F1C031-6FA6-3927-F89A-33FE644F302B}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\stb_image">
       <UniqueIdentifier>{631FF594-CF35-F32A-18AD-7E4C8402C4B2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="core\engineWindow">
-      <UniqueIdentifier>{0a5814a8-afc3-46ba-be7d-26ae9b0a5a3b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -87,11 +93,29 @@
     <ClInclude Include="Source\core\elements\mesh\kubyk_voxel.h">
       <Filter>core\elements\mesh</Filter>
     </ClInclude>
+    <ClInclude Include="Source\core\engineWindow\engineWindow.h">
+      <Filter>core\engineWindow</Filter>
+    </ClInclude>
     <ClInclude Include="Source\core\gameWindow\Shader.h">
+      <Filter>core\gameWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\core\gameWindow\Texture.h">
       <Filter>core\gameWindow</Filter>
     </ClInclude>
     <ClInclude Include="Source\core\gameWindow\gameWindow.h">
       <Filter>core\gameWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\core\nodes\addVoxel.h">
+      <Filter>core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\core\nodes\connections\order.h">
+      <Filter>core\nodes\connections</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\core\nodes\node.h">
+      <Filter>core\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\core\nodes\nodes.h">
+      <Filter>core\nodes</Filter>
     </ClInclude>
     <ClInclude Include="Source\core\render\shader_util.h">
       <Filter>core\render</Filter>
@@ -1290,6 +1314,9 @@
     <ClInclude Include="Source\include\ImGui\imgui_impl_glfw.h">
       <Filter>include\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="Source\include\ImGui\imgui_impl_glut.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="Source\include\ImGui\imgui_impl_opengl2.h">
       <Filter>include\ImGui</Filter>
     </ClInclude>
@@ -1297,6 +1324,9 @@
       <Filter>include\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="Source\include\ImGui\imgui_impl_opengl3_loader.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\include\ImGui\imgui_impl_win32.h">
       <Filter>include\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="Source\include\ImGui\imgui_internal.h">
@@ -1587,6 +1617,36 @@
     <ClInclude Include="Source\include\assimp\version.h">
       <Filter>include\assimp</Filter>
     </ClInclude>
+    <ClInclude Include="Source\include\json\allocator.h">
+      <Filter>include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\include\json\assertions.h">
+      <Filter>include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\include\json\config.h">
+      <Filter>include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\include\json\forwards.h">
+      <Filter>include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\include\json\json.h">
+      <Filter>include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\include\json\json_features.h">
+      <Filter>include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\include\json\reader.h">
+      <Filter>include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\include\json\value.h">
+      <Filter>include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\include\json\version.h">
+      <Filter>include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\include\json\writer.h">
+      <Filter>include\json</Filter>
+    </ClInclude>
     <ClInclude Include="Source\include\mui\browser.h">
       <Filter>include\mui</Filter>
     </ClInclude>
@@ -1614,22 +1674,34 @@
     <ClInclude Include="Source\include\stb_image\stb_image.h">
       <Filter>include\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="Source\core\engineWindow\engineWindow.h">
-      <Filter>core\engineWindow</Filter>
+    <ClInclude Include="Source\include\test_data.hpp">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="Source\core\nodes\node.h" />
-    <ClInclude Include="Source\core\nodes\addVoxel.h" />
-    <ClInclude Include="Source\core\nodes\nodes.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\core\core.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
     <ClCompile Include="Source\core\elements\mesh\kubyk_voxel.cpp">
       <Filter>core\elements\mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\core\engineWindow\engineWindow.cpp">
+      <Filter>core\engineWindow</Filter>
     </ClCompile>
     <ClCompile Include="Source\core\gameWindow\Shader.cpp">
       <Filter>core\gameWindow</Filter>
     </ClCompile>
+    <ClCompile Include="Source\core\gameWindow\Texture.cpp">
+      <Filter>core\gameWindow</Filter>
+    </ClCompile>
     <ClCompile Include="Source\core\gameWindow\gameWindow.cpp">
       <Filter>core\gameWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\core\nodes\addVoxel.cpp">
+      <Filter>core\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\core\nodes\connections\order.cpp">
+      <Filter>core\nodes\connections</Filter>
     </ClCompile>
     <ClCompile Include="Source\core\render\shader_util.cpp">
       <Filter>core\render</Filter>
@@ -1649,10 +1721,16 @@
     <ClCompile Include="Source\include\ImGui\imgui_impl_glfw.cpp">
       <Filter>include\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="Source\include\ImGui\imgui_impl_glut.cpp">
+      <Filter>include\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="Source\include\ImGui\imgui_impl_opengl2.cpp">
       <Filter>include\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="Source\include\ImGui\imgui_impl_opengl3.cpp">
+      <Filter>include\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\include\ImGui\imgui_impl_win32.cpp">
       <Filter>include\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="Source\include\ImGui\imgui_tables.cpp">
@@ -1665,17 +1743,18 @@
       <Filter>include\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="Source\kubyk.cpp" />
-    <ClCompile Include="Source\core\engineWindow\engineWindow.cpp">
-      <Filter>core\engineWindow</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\core\core.cpp" />
-    <ClCompile Include="Source\core\nodes\addVoxel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\core\shaders\fragment_shader.fs">
       <Filter>core\shaders</Filter>
     </None>
+    <None Include="Source\core\shaders\fragment_shaderv1.fs">
+      <Filter>core\shaders</Filter>
+    </None>
     <None Include="Source\core\shaders\vertex_shader.vs">
+      <Filter>core\shaders</Filter>
+    </None>
+    <None Include="Source\core\shaders\vertex_shaderv1.vs">
       <Filter>core\shaders</Filter>
     </None>
   </ItemGroup>

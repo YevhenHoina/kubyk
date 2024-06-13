@@ -305,15 +305,15 @@ void renderImGui(int argc, char** argv) {
                     ImGui::EndTabItem();
                 }
                 if (ImGui::BeginTabItem("Rotation")) {
-                    ImGui::SliderFloat("X", &node->rotation[0], -1.0f, 1.0f);
-                    ImGui::SliderFloat("Y", &node->rotation[1], -1.0f, 1.0f);
-                    ImGui::SliderFloat("Z", &node->rotation[2], -1.0f, 1.0f);
+                    ImGui::SliderFloat("X", &node->rotation[0], -180.0f, 180.0f);
+                    ImGui::SliderFloat("Y", &node->rotation[1], -180.0f, 180.0f);
+                    ImGui::SliderFloat("Z", &node->rotation[2], -180.0f, 180.0f);
                     ImGui::EndTabItem();
                 }
                 if (ImGui::BeginTabItem("Scale")) {
-                    ImGui::SliderFloat("X", &node->scale[0], -1.0f, 1.0f);
-                    ImGui::SliderFloat("Y", &node->scale[1], -1.0f, 1.0f);
-                    ImGui::SliderFloat("Z", &node->scale[2], -1.0f, 1.0f);
+                    ImGui::SliderFloat("X", &node->scale[0], -5.0f, 5.0f);
+                    ImGui::SliderFloat("Y", &node->scale[1], -5.0f, 5.0f);
+                    ImGui::SliderFloat("Z", &node->scale[2], -5.0f, 5.0f);
                     ImGui::EndTabItem();
                 }
                 ImGui::EndTabBar();
@@ -327,7 +327,14 @@ void renderImGui(int argc, char** argv) {
             ImGui::SetNextWindowSize(ImVec2(windowWidth - leftPanelWidth, windowHeight - bottomPanelHeight), ImGuiCond_Always);
             ImGui::SetNextWindowPos(ImVec2(leftPanelWidth, 0), ImGuiCond_Always);
             ImGui::Begin("Top Right Empty Space", nullptr, window_flags);
-            ImGui::GetWindowDrawList()->AddLine(ImVec2(0.0f, 20.0f), ImVec2(500.0f, 20.0f), lineColor, 3.0f);
+
+            ImVec2 firstPoint = ImVec2(x - 8, y + 25);
+            ImVec2 secondPoint = ImVec2(455 + xoffset, 275 - yoffset);
+            if (i >= 1)
+            {
+                secondPoint = ImVec2(nodes[i - 1]->nodePosX + nodes[i - 1]->nodeSizeX + xoffset + 5, nodes[i - 1]->nodePosY + 25 - yoffset);
+            }
+            ImGui::GetWindowDrawList()->AddLine(firstPoint, secondPoint, lineColor, 3.0f);
 
             ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(442 + xoffset, 270 - yoffset), ImVec2(458 + xoffset, 280 - yoffset), lineColor, 4);
 
@@ -353,6 +360,9 @@ void renderImGui(int argc, char** argv) {
         addNode_addVoxel(last_node_coordX, last_node_coordY);
     }
     if (ImGui::Button("Launch Game")) {
+
+        
+        loadAdditionVoxels(nodes);
         gameInit(argc, argv, "myGame");
     }
     ImGui::End();

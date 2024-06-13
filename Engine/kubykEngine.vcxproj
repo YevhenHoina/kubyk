@@ -147,14 +147,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Source\core\nodes\addVoxel.h" />
-    <ClInclude Include="Source\core\nodes\nodes.h" />
-    <ClInclude Include="Source\core\nodes\node.h" />
-    <ClInclude Include="Source\core\engineWindow\engineWindow.h" />
     <ClInclude Include="Source\core\core.h" />
     <ClInclude Include="Source\core\elements\mesh\kubyk_voxel.h" />
+    <ClInclude Include="Source\core\engineWindow\engineWindow.h" />
     <ClInclude Include="Source\core\gameWindow\Shader.h" />
+    <ClInclude Include="Source\core\gameWindow\Texture.h" />
     <ClInclude Include="Source\core\gameWindow\gameWindow.h" />
+    <ClInclude Include="Source\core\nodes\addVoxel.h" />
+    <ClInclude Include="Source\core\nodes\connections\order.h" />
+    <ClInclude Include="Source\core\nodes\node.h" />
+    <ClInclude Include="Source\core\nodes\nodes.h" />
     <ClInclude Include="Source\core\render\shader_util.h" />
     <ClInclude Include="Source\include\GL\eglew.h" />
     <ClInclude Include="Source\include\GL\fgl.h" />
@@ -554,9 +556,11 @@
     <ClInclude Include="Source\include\ImGui\imconfig.h" />
     <ClInclude Include="Source\include\ImGui\imgui.h" />
     <ClInclude Include="Source\include\ImGui\imgui_impl_glfw.h" />
+    <ClInclude Include="Source\include\ImGui\imgui_impl_glut.h" />
     <ClInclude Include="Source\include\ImGui\imgui_impl_opengl2.h" />
     <ClInclude Include="Source\include\ImGui\imgui_impl_opengl3.h" />
     <ClInclude Include="Source\include\ImGui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="Source\include\ImGui\imgui_impl_win32.h" />
     <ClInclude Include="Source\include\ImGui\imgui_internal.h" />
     <ClInclude Include="Source\include\ImGui\imstb_rectpack.h" />
     <ClInclude Include="Source\include\ImGui\imstb_textedit.h" />
@@ -653,6 +657,16 @@
     <ClInclude Include="Source\include\assimp\vector3.h" />
     <ClInclude Include="Source\include\assimp\vector3.inl" />
     <ClInclude Include="Source\include\assimp\version.h" />
+    <ClInclude Include="Source\include\json\allocator.h" />
+    <ClInclude Include="Source\include\json\assertions.h" />
+    <ClInclude Include="Source\include\json\config.h" />
+    <ClInclude Include="Source\include\json\forwards.h" />
+    <ClInclude Include="Source\include\json\json.h" />
+    <ClInclude Include="Source\include\json\json_features.h" />
+    <ClInclude Include="Source\include\json\reader.h" />
+    <ClInclude Include="Source\include\json\value.h" />
+    <ClInclude Include="Source\include\json\version.h" />
+    <ClInclude Include="Source\include\json\writer.h" />
     <ClInclude Include="Source\include\mui\browser.h" />
     <ClInclude Include="Source\include\mui\displaylist.h" />
     <ClInclude Include="Source\include\mui\gizmo.h" />
@@ -662,22 +676,27 @@
     <ClInclude Include="Source\include\mui\uicolor.h" />
     <ClInclude Include="Source\include\mui\vslider.h" />
     <ClInclude Include="Source\include\stb_image\stb_image.h" />
+    <ClInclude Include="Source\include\test_data.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\core\nodes\addVoxel.cpp" />
     <ClCompile Include="Source\core\core.cpp" />
-    <ClCompile Include="Source\core\engineWindow\engineWindow.cpp" />
     <ClCompile Include="Source\core\elements\mesh\kubyk_voxel.cpp" />
+    <ClCompile Include="Source\core\engineWindow\engineWindow.cpp" />
     <ClCompile Include="Source\core\gameWindow\Shader.cpp" />
+    <ClCompile Include="Source\core\gameWindow\Texture.cpp" />
     <ClCompile Include="Source\core\gameWindow\gameWindow.cpp" />
+    <ClCompile Include="Source\core\nodes\addVoxel.cpp" />
+    <ClCompile Include="Source\core\nodes\connections\order.cpp" />
     <ClCompile Include="Source\core\render\shader_util.cpp" />
     <ClCompile Include="Source\include\GLM\detail\glm.cpp" />
     <ClCompile Include="Source\include\ImGui\imgui.cpp" />
     <ClCompile Include="Source\include\ImGui\imgui_demo.cpp" />
     <ClCompile Include="Source\include\ImGui\imgui_draw.cpp" />
     <ClCompile Include="Source\include\ImGui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="Source\include\ImGui\imgui_impl_glut.cpp" />
     <ClCompile Include="Source\include\ImGui\imgui_impl_opengl2.cpp" />
     <ClCompile Include="Source\include\ImGui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Source\include\ImGui\imgui_impl_win32.cpp" />
     <ClCompile Include="Source\include\ImGui\imgui_tables.cpp" />
     <ClCompile Include="Source\include\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="Source\include\stb_image\stb_image.cpp" />
@@ -685,7 +704,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\core\shaders\fragment_shader.fs" />
+    <None Include="Source\core\shaders\fragment_shaderv1.fs" />
     <None Include="Source\core\shaders\vertex_shader.vs" />
+    <None Include="Source\core\shaders\vertex_shaderv1.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

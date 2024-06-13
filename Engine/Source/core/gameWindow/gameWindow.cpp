@@ -22,7 +22,7 @@ float pitch = 0.0f;
 bool rightMouseButtonPressed = false;
 int lastX = 400, lastY = 300;
 
-void addVoxel(glm::vec3 pos, glm::vec3 rot, glm::vec3 scl)
+void addVoxelVec(glm::vec3 pos, glm::vec3 rot, glm::vec3 scl)
 {
     voxel* buffer_voxel = new voxel("testCube", pos, rot, scl);
     VOXELS.push_back(buffer_voxel);
@@ -33,7 +33,7 @@ void addVoxelFloat(float pos[3], float rot[3], float scl[3])
     glm::vec3 cpp_rot = glm::vec3(rot[0], rot[1], rot[2]);
     glm::vec3 cpp_scl = glm::vec3(scl[0], scl[1], scl[2]);
 
-    addVoxel(cpp_pos, cpp_rot, cpp_scl);
+    addVoxelVec(cpp_pos, cpp_rot, cpp_scl);
 }
 
 
@@ -232,3 +232,14 @@ int gameInit(int argc, char** argv, const char* gameName) {
     delete shader;
     return 0;
 }
+
+void loadAdditionVoxels(std::vector<addVoxel*> nodes)
+{
+    for (size_t i = 0; i < nodes.size(); ++i) {
+
+        addVoxelFloat(nodes[i]->position, nodes[i]->rotation, nodes[i]->scale);
+    }
+}
+
+
+
